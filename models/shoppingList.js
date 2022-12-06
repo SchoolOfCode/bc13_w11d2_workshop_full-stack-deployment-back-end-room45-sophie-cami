@@ -20,9 +20,9 @@ export async function postListItem(listItem) {
 
 export async function patchListItem(id) {
   const data = await pool.query(
-    `UPDATE shopping SET completed = NOT completed
+    `UPDATE shopping SET completed = $2
     WHERE id = $1 RETURNING *;`,
-    [id]
+    [id, completed]
   );
-  return data.rows[0]
+  return data.rows[0];
 }
