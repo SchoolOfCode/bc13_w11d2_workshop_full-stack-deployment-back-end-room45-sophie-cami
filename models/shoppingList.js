@@ -18,11 +18,11 @@ export async function postListItem(listItem) {
   return data.rows[0];
 }
 
-export async function patchListItem(id, completed) {
+export async function patchListItem(id) {
   const data = await pool.query(
-    `UPDATE shopping SET completed = $2
+    `UPDATE shopping SET completed = true
     WHERE id = $1 RETURNING *;`,
-    [id, completed]
+    [id]
   );
   return data.rows[0];
 }
