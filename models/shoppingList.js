@@ -26,3 +26,8 @@ export async function patchListItem(id, completed) {
   );
   return data.rows[0];
 }
+
+export async function deleteListItems() {
+  const data = await pool.query(`DELETE FROM shopping RETURNING *`);
+  return data.rows;
+}
